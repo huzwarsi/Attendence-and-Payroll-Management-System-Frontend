@@ -285,27 +285,30 @@ export default function AttendanceMonitoringPage() {
       {/* ═══ Header ═══ */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-black dark:text-white tracking-tight flex items-center gap-2">
-            <CalendarCheck className="w-7 h-7 text-emerald-600 dark:text-emerald-500" /> Attendance Monitoring
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-black dark:text-white tracking-tight flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center text-white shadow-lg shadow-blue-600/25">
+              <CalendarCheck className="w-5 h-5" />
+            </div>
+            Attendance Monitoring
           </h1>
-          <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             {isToday ? 'Live' : 'Historical'} attendance for {displayDate}
           </p>
         </div>
 
-        <div className="flex items-center gap-2 self-start sm:self-auto">
+        <div className="flex items-center gap-2.5 self-start sm:self-auto">
           <button
             onClick={() => fetchTodayAttendance(true)}
             disabled={refreshing}
-            className="p-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-50"
+            className="p-2.5 glass-card glass-card-hover rounded-xl text-slate-600 dark:text-slate-400 disabled:opacity-50"
             title="Refresh"
           >
-            <RefreshCw className={`w-4 h-4 text-slate-600 dark:text-slate-400 ${refreshing ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin' : ''}`} />
           </button>
 
           <button
             onClick={() => openModalForAction(null, 'checkin')}
-            className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-xs flex items-center gap-2 shadow-md shadow-emerald-600/20 transition-all"
+            className="px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold rounded-xl text-xs flex items-center gap-2 shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-0.5"
           >
             <Plus className="w-4 h-4" /> Manual Entry
           </button>
@@ -313,21 +316,21 @@ export default function AttendanceMonitoringPage() {
       </div>
 
       {/* ═══ Summary Cards ═══ */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         {[
-          { label: 'Total Staff', value: meta.total_staff, color: 'text-slate-800 dark:text-white', icon: <Users className="w-4 h-4 text-slate-500" /> },
-          { label: 'Present', value: counts.present, color: 'text-emerald-600 dark:text-emerald-400', icon: <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> },
-          { label: 'Late', value: counts.late, color: 'text-amber-600 dark:text-amber-400', icon: <AlertCircle className="w-4 h-4 text-amber-600 dark:text-amber-400" /> },
-          { label: 'Absent', value: counts.absent, color: 'text-rose-600 dark:text-rose-400', icon: <XCircle className="w-4 h-4 text-rose-600 dark:text-rose-400" /> },
-          { label: 'Not Marked', value: counts.not_marked, color: 'text-slate-500 dark:text-slate-400', icon: <Clock className="w-4 h-4 text-slate-400" /> }
+          { label: 'Total Staff', value: meta.total_staff, color: 'text-black dark:text-white', icon: <Users className="w-4 h-4 text-blue-500" />, glow: 'stat-card-blue' },
+          { label: 'Present', value: counts.present, color: 'text-emerald-600 dark:text-emerald-400', icon: <CheckCircle2 className="w-4 h-4 text-emerald-500" />, glow: 'stat-card-green' },
+          { label: 'Late', value: counts.late, color: 'text-amber-600 dark:text-amber-400', icon: <AlertCircle className="w-4 h-4 text-amber-500" />, glow: 'stat-card-amber' },
+          { label: 'Absent', value: counts.absent, color: 'text-rose-600 dark:text-rose-400', icon: <XCircle className="w-4 h-4 text-rose-500" />, glow: 'stat-card-rose' },
+          { label: 'Not Marked', value: counts.not_marked, color: 'text-slate-500 dark:text-slate-400', icon: <Clock className="w-4 h-4 text-slate-400" />, glow: 'stat-card-blue' }
         ].map((card, i) => (
-          <div key={card.label} className={`glass-card rounded-xl p-3 sm:p-4 flex items-center gap-2 sm:gap-3 ${i === 4 ? 'col-span-2 sm:col-span-1' : ''}`}>
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
+          <div key={card.label} className={`glass-card glass-card-hover ${card.glow} rounded-2xl p-4 flex items-center gap-3 ${i === 4 ? 'col-span-2 sm:col-span-1' : ''}`}>
+            <div className="w-9 h-9 rounded-xl bg-slate-100/80 dark:bg-slate-800/60 flex items-center justify-center shrink-0">
               {card.icon}
             </div>
             <div className="min-w-0">
-              <p className="text-[9px] sm:text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase truncate">{card.label}</p>
-              <p className={`text-base sm:text-lg font-bold ${card.color}`}>{card.value}</p>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider truncate">{card.label}</p>
+              <p className={`text-xl font-black font-mono leading-none mt-0.5 ${card.color}`}>{card.value}</p>
             </div>
           </div>
         ))}

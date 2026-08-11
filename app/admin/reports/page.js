@@ -77,15 +77,18 @@ export default function ReportsHubPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-black dark:text-white tracking-tight flex items-center gap-2">
-            <FileSpreadsheet className="w-7 h-7 text-blue-600 dark:text-blue-500" /> Executive Reports Hub
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-black dark:text-white tracking-tight flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center text-white shadow-lg shadow-blue-600/25">
+              <FileSpreadsheet className="w-5 h-5" />
+            </div>
+            Executive Reports Hub
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Generate and export filterable audit reports for Staff, Attendance, and Payroll.</p>
         </div>
 
         <button
           onClick={handleExportCSV}
-          className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-xs flex items-center gap-2 shadow-md shadow-emerald-600/20 transition-all self-start sm:self-auto"
+          className="px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold rounded-xl text-xs flex items-center gap-2 shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-0.5 self-start sm:self-auto"
         >
           <Download className="w-4 h-4" /> Export Report CSV
         </button>
@@ -95,35 +98,33 @@ export default function ReportsHubPage() {
       <div className="grid grid-cols-3 gap-2 p-1.5 glass-card rounded-2xl">
         <button
           onClick={() => setActiveReport('attendance')}
-          className={`flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-semibold transition-all ${
+          className={`flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold transition-all ${
             activeReport === 'attendance'
-              ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20'
-              : 'text-black/70 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50'
+              ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-600/25'
+              : 'text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white'
           }`}
         >
           <CalendarCheck className="w-4 h-4" /> Attendance Report
         </button>
-
         <button
           onClick={() => setActiveReport('payroll')}
-          className={`flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-semibold transition-all ${
+          className={`flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold transition-all ${
             activeReport === 'payroll'
-              ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-              : 'text-black/70 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50'
+              ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-600/25'
+              : 'text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white'
           }`}
         >
-          <CircleDollarSign className="w-4 h-4" /> Payroll Summary Report
+          <CircleDollarSign className="w-4 h-4" /> Payroll Report
         </button>
-
         <button
           onClick={() => setActiveReport('staff')}
-          className={`flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-semibold transition-all ${
+          className={`flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold transition-all ${
             activeReport === 'staff'
-              ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
-              : 'text-black/70 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50'
+              ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-600/25'
+              : 'text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white'
           }`}
         >
-          <Users className="w-4 h-4" /> Staff Directory Report
+          <Users className="w-4 h-4" /> Staff Master Report
         </button>
       </div>
 

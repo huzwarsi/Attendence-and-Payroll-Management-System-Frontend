@@ -102,19 +102,22 @@ export default function StaffPortalAttendancePage() {
       {/* ═══ Header ═══ */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-black dark:text-white tracking-tight flex items-center gap-2">
-            <CalendarCheck className="w-7 h-7 text-indigo-600 dark:text-indigo-400" /> My Attendance History
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-black dark:text-white tracking-tight flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center text-white shadow-lg shadow-blue-600/25">
+              <CalendarCheck className="w-5 h-5" />
+            </div>
+            My Attendance History
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Monthly log for <strong className="text-black dark:text-white">{staffName}</strong>. Managed strictly via QR scan.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 self-start sm:self-auto">
+        <div className="flex items-center gap-2.5 self-start sm:self-auto">
           <select
             value={selectedMonth}
             onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
-            className="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-black dark:text-white focus:outline-none focus:border-indigo-500 font-bold"
+            className="bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 py-2 text-xs text-black dark:text-white focus:outline-none focus:border-blue-500 font-bold transition-all"
           >
             {months.map((m) => (
               <option key={m.value} value={m.value}>{m.name}</option>
@@ -124,7 +127,7 @@ export default function StaffPortalAttendancePage() {
           <select
             value={selectedYear}
             onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-            className="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-black dark:text-white focus:outline-none focus:border-indigo-500 font-bold"
+            className="bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 py-2 text-xs text-black dark:text-white focus:outline-none focus:border-blue-500 font-bold transition-all"
           >
             {[2024, 2025, 2026, 2027].map((y) => (
               <option key={y} value={y}>{y}</option>
@@ -135,21 +138,21 @@ export default function StaffPortalAttendancePage() {
 
       {/* ═══ Monthly Statistics Summary Cards ═══ */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="glass-card rounded-xl p-4">
-          <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">Present Days</p>
-          <p className="text-xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-1 font-mono">{stats.present}</p>
+        <div className="glass-card glass-card-hover stat-card-green rounded-2xl p-4">
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Present Days</p>
+          <p className="text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-1 font-mono">{stats.present}</p>
         </div>
-        <div className="glass-card rounded-xl p-4">
-          <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">Late Count</p>
-          <p className="text-xl font-extrabold text-amber-600 dark:text-amber-400 mt-1 font-mono">{stats.late}</p>
+        <div className="glass-card glass-card-hover stat-card-amber rounded-2xl p-4">
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Late Count</p>
+          <p className="text-2xl font-black text-amber-600 dark:text-amber-400 mt-1 font-mono">{stats.late}</p>
         </div>
-        <div className="glass-card rounded-xl p-4">
-          <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">Absent Days</p>
-          <p className="text-xl font-extrabold text-rose-600 dark:text-rose-400 mt-1 font-mono">{stats.absent}</p>
+        <div className="glass-card glass-card-hover stat-card-rose rounded-2xl p-4">
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Absent Days</p>
+          <p className="text-2xl font-black text-rose-600 dark:text-rose-400 mt-1 font-mono">{stats.absent}</p>
         </div>
-        <div className="glass-card rounded-xl p-4">
-          <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">Total Worked</p>
-          <p className="text-xl font-extrabold text-indigo-600 dark:text-indigo-400 mt-1 font-mono">{stats.totalHours} hrs</p>
+        <div className="glass-card glass-card-hover stat-card-blue rounded-2xl p-4">
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Worked</p>
+          <p className="text-2xl font-black text-blue-600 dark:text-blue-400 mt-1 font-mono">{stats.totalHours} hrs</p>
         </div>
       </div>
 

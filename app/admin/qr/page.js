@@ -80,8 +80,11 @@ export default function QRStationPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-black dark:text-white tracking-tight flex items-center gap-2">
-            <QrCode className="w-7 h-7 text-blue-600 dark:text-blue-500" /> Attendance QR Broadcast Station
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-black dark:text-white tracking-tight flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center text-white shadow-lg shadow-blue-600/25">
+              <QrCode className="w-5 h-5" />
+            </div>
+            Attendance QR Broadcast Station
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Display this screen on reception tablet/monitor for staff mobile scanning.</p>
         </div>
@@ -89,14 +92,14 @@ export default function QRStationPage() {
         <button
           onClick={handleGenerateNewQR}
           disabled={generating}
-          className="px-4 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl text-xs flex items-center gap-2 shadow-md shadow-blue-600/20 transition-all disabled:opacity-50 self-start sm:self-auto"
+          className="px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold rounded-xl text-xs flex items-center gap-2 shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-0.5 disabled:opacity-50 self-start sm:self-auto"
         >
           <RefreshCw className={`w-4 h-4 ${generating ? 'animate-spin' : ''}`} /> Generate New QR Token
         </button>
       </div>
 
       {/* Main QR Card */}
-      <div className="glass-card rounded-3xl p-8 text-center shadow-sm dark:shadow-2xl flex flex-col items-center justify-center relative overflow-hidden">
+      <div className="glass-card rounded-3xl p-8 text-center flex flex-col items-center justify-center relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-blue-500/10 dark:bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
 
         {loading ? (

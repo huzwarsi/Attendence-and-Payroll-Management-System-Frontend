@@ -48,45 +48,48 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 flex flex-col justify-center items-center p-4 relative overflow-hidden transition-colors duration-200">
+    <div className="min-h-screen flex flex-col justify-center items-center p-4 relative overflow-hidden transition-colors duration-200" style={{ background: 'var(--bg-primary)' }}>
       <div className="absolute top-4 right-4 z-20">
         <ThemeToggleBtn />
       </div>
-      {/* Background Gradient Blurs */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-600/10 dark:bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-indigo-600/10 dark:bg-indigo-600/20 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Mesh gradient background */}
+      <div className="absolute inset-0 mesh-gradient-light pointer-events-none" />
+      <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-blue-500/10 dark:bg-blue-600/15 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-indigo-500/10 dark:bg-indigo-600/15 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-[80px] pointer-events-none" />
 
       <div className="w-full max-w-md z-10">
         {/* Branding */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 shadow-lg shadow-blue-500/30 mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 shadow-xl shadow-blue-600/30 mb-4">
             <ShieldCheck className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-black dark:text-white tracking-tight">Attendance & Payroll</h1>
-          <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">Enterprise QR Tracking & Payroll Automation</p>
+          <h1 className="text-3xl font-black text-black dark:text-white tracking-tight">Attendance & Payroll</h1>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Enterprise HR Management System</p>
         </div>
 
-        {/* Card Container */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 shadow-xl dark:shadow-2xl border border-slate-200 dark:border-slate-800">
+        {/* Glass Card */}
+        <div className="glass-card rounded-2xl p-6 sm:p-8">
           {/* Tab Switcher */}
-          <div className="grid grid-cols-2 gap-1 p-1 bg-slate-100 dark:bg-slate-900/80 rounded-xl mb-6 border border-slate-200 dark:border-slate-800">
+          <div className="grid grid-cols-2 gap-1 p-1 bg-slate-100/80 dark:bg-slate-800/50 rounded-xl mb-6 border border-slate-200/60 dark:border-slate-700/40">
             <button
               onClick={() => { setActiveTab('admin'); setError(''); }}
               className={`flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-bold transition-all ${
                 activeTab === 'admin'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-slate-200 hover:bg-white dark:hover:bg-slate-800/50'
+                  ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-600/25'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-slate-200'
               }`}
             >
               <ShieldCheck className="w-4 h-4" />
-              Admin Login
+              Admin
             </button>
             <button
               onClick={() => { setActiveTab('staff'); setError(''); }}
               className={`flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-bold transition-all ${
                 activeTab === 'staff'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-slate-200 hover:bg-white dark:hover:bg-slate-800/50'
+                  ? 'bg-gradient-to-r from-indigo-600 to-indigo-500 text-white shadow-lg shadow-indigo-600/25'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-slate-200'
               }`}
             >
               <UserCheck className="w-4 h-4" />
@@ -96,7 +99,7 @@ export default function LoginPage() {
 
           {/* Error Banner */}
           {error && (
-            <div className="mb-6 p-3 rounded-lg bg-red-100 dark:bg-red-500/10 border border-red-300 dark:border-red-500/20 text-red-800 dark:text-red-400 text-sm text-center font-bold">
+            <div className="mb-6 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-700 dark:text-red-400 text-sm text-center font-bold">
               {error}
             </div>
           )}
@@ -105,35 +108,35 @@ export default function LoginPage() {
           {activeTab === 'admin' ? (
             <form onSubmit={handleAdminSubmit} className="space-y-5">
               <div>
-                <label className="block text-xs font-bold text-black dark:text-slate-300 uppercase tracking-wider mb-2">
-                  Admin Email Address
+                <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                  Admin Email
                 </label>
                 <div className="relative">
-                  <Mail className="w-5 h-5 text-slate-500 dark:text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Mail className="w-4.5 h-4.5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="email"
                     required
                     value={adminEmail}
                     onChange={(e) => setAdminEmail(e.target.value)}
                     placeholder="admin@system.com"
-                    className="w-full bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-800 rounded-xl pl-11 pr-4 py-3 text-black dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm font-medium focus:outline-none focus:border-blue-600 dark:focus:border-blue-500 focus:ring-1 focus:ring-blue-600 dark:focus:ring-blue-500 transition-all"
+                    className="w-full bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 rounded-xl pl-11 pr-4 py-3 text-black dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm font-medium focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-black dark:text-slate-300 uppercase tracking-wider mb-2">
+                <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
                   Password
                 </label>
                 <div className="relative">
-                  <Lock className="w-5 h-5 text-slate-500 dark:text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Lock className="w-4.5 h-4.5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="password"
                     required
                     value={adminPassword}
                     onChange={(e) => setAdminPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-800 rounded-xl pl-11 pr-4 py-3 text-black dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm font-medium focus:outline-none focus:border-blue-600 dark:focus:border-blue-500 focus:ring-1 focus:ring-blue-600 dark:focus:ring-blue-500 transition-all"
+                    className="w-full bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 rounded-xl pl-11 pr-4 py-3 text-black dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm font-medium focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
                   />
                 </div>
               </div>
@@ -141,48 +144,43 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3.5 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-xl text-sm shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+                className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold rounded-xl text-sm shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 transition-all disabled:opacity-50 hover:-translate-y-0.5"
               >
-                {loading ? 'Authenticating...' : (
-                  <>
-                    Sign In as Admin <ArrowRight className="w-4 h-4" />
-                  </>
-                )}
+                {loading ? 'Authenticating...' : (<>Sign In as Admin <ArrowRight className="w-4 h-4" /></>)}
               </button>
             </form>
           ) : (
-            /* Staff Form */
             <form onSubmit={handleStaffSubmit} className="space-y-5">
               <div>
-                <label className="block text-xs font-bold text-black dark:text-slate-300 uppercase tracking-wider mb-2">
-                  Phone Number or Email
+                <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                  Phone or Email
                 </label>
                 <div className="relative">
-                  <Phone className="w-5 h-5 text-slate-500 dark:text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Phone className="w-4.5 h-4.5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     required
                     value={staffLogin}
                     onChange={(e) => setStaffLogin(e.target.value)}
                     placeholder="03001234567 or ali@company.com"
-                    className="w-full bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-800 rounded-xl pl-11 pr-4 py-3 text-black dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm font-medium focus:outline-none focus:border-indigo-600 dark:focus:border-indigo-500 focus:ring-1 focus:ring-indigo-600 dark:focus:ring-indigo-500 transition-all"
+                    className="w-full bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 rounded-xl pl-11 pr-4 py-3 text-black dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm font-medium focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-black dark:text-slate-300 uppercase tracking-wider mb-2">
+                <label className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
                   Password
                 </label>
                 <div className="relative">
-                  <Lock className="w-5 h-5 text-slate-500 dark:text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Lock className="w-4.5 h-4.5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="password"
                     required
                     value={staffPassword}
                     onChange={(e) => setStaffPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-800 rounded-xl pl-11 pr-4 py-3 text-black dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm font-medium focus:outline-none focus:border-indigo-600 dark:focus:border-indigo-500 focus:ring-1 focus:ring-indigo-600 dark:focus:ring-indigo-500 transition-all"
+                    className="w-full bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 rounded-xl pl-11 pr-4 py-3 text-black dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm font-medium focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                   />
                 </div>
               </div>
@@ -190,42 +188,30 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3.5 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold rounded-xl text-sm shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+                className="w-full py-3.5 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white font-bold rounded-xl text-sm shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 transition-all disabled:opacity-50 hover:-translate-y-0.5"
               >
-                {loading ? 'Authenticating...' : (
-                  <>
-                    Sign In to Staff Portal <ArrowRight className="w-4 h-4" />
-                  </>
-                )}
+                {loading ? 'Authenticating...' : (<>Sign In to Staff Portal <ArrowRight className="w-4 h-4" /></>)}
               </button>
             </form>
           )}
 
-          {/* Quick Demo Login Presets */}
-          <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800/80">
-            <p className="text-xs font-bold text-slate-600 dark:text-slate-400 text-center mb-3">QUICK DEMO CREDENTIALS</p>
+          {/* Demo Presets */}
+          <div className="mt-8 pt-6 border-t border-slate-200/60 dark:border-slate-800/60">
+            <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 text-center mb-3 uppercase tracking-wider">Quick Demo Credentials</p>
             <div className="grid grid-cols-2 gap-2 text-xs">
               <button
                 type="button"
-                onClick={() => {
-                  setActiveTab('admin');
-                  setAdminEmail('admin@system.com');
-                  setAdminPassword('admin123');
-                }}
-                className="p-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 rounded-lg text-black dark:text-slate-300 border border-slate-300 dark:border-slate-800 flex items-center gap-1.5 justify-center font-bold"
+                onClick={() => { setActiveTab('admin'); setAdminEmail('admin@system.com'); setAdminPassword('admin123'); }}
+                className="p-2.5 bg-slate-50/80 hover:bg-slate-100 dark:bg-slate-800/40 dark:hover:bg-slate-800/60 rounded-xl text-black dark:text-slate-300 border border-slate-200/60 dark:border-slate-700/40 flex items-center gap-1.5 justify-center font-bold transition-all"
               >
-                <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" /> Admin Demo
+                <CheckCircle2 className="w-3.5 h-3.5 text-blue-500" /> Admin Demo
               </button>
               <button
                 type="button"
-                onClick={() => {
-                  setActiveTab('staff');
-                  setStaffLogin('ali@company.com');
-                  setStaffPassword('staff123');
-                }}
-                className="p-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 rounded-lg text-black dark:text-slate-300 border border-slate-300 dark:border-slate-800 flex items-center gap-1.5 justify-center font-bold"
+                onClick={() => { setActiveTab('staff'); setStaffLogin('ali@company.com'); setStaffPassword('staff123'); }}
+                className="p-2.5 bg-slate-50/80 hover:bg-slate-100 dark:bg-slate-800/40 dark:hover:bg-slate-800/60 rounded-xl text-black dark:text-slate-300 border border-slate-200/60 dark:border-slate-700/40 flex items-center gap-1.5 justify-center font-bold transition-all"
               >
-                <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" /> Staff Demo
+                <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500" /> Staff Demo
               </button>
             </div>
           </div>

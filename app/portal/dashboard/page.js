@@ -55,37 +55,40 @@ export default function StaffPortalDashboardPage() {
   return (
     <div className="space-y-6">
       {/* ═══ Welcome Banner ═══ */}
-      <div className="glass-card rounded-2xl p-6 relative overflow-hidden">
+      <div className="relative overflow-hidden rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-indigo-400/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-indigo-600 dark:text-indigo-400 text-xs font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs font-bold">
               <Sparkles className="w-3.5 h-3.5" /> Staff Self-Service Portal
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-black dark:text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-black tracking-tight">
               Welcome back, {staffFullName}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600 dark:text-slate-400">
-              <span className="flex items-center gap-1.5 font-bold text-black dark:text-slate-200">
-                <Briefcase className="w-3.5 h-3.5 text-indigo-500" /> {staff.designation || 'Staff'}
+            <div className="flex flex-wrap items-center gap-3 text-xs text-blue-100/90">
+              <span className="flex items-center gap-1.5 font-bold">
+                <Briefcase className="w-3.5 h-3.5 text-blue-200" /> {staff.designation || 'Staff'}
               </span>
               <span>&bull;</span>
               <span className="flex items-center gap-1.5 font-mono">
-                <Clock className="w-3.5 h-3.5 text-indigo-500" /> Assigned Shift: <strong className="text-black dark:text-white">{staff.check_in_time || '09:00'} - {staff.check_out_time || '17:00'}</strong>
+                <Clock className="w-3.5 h-3.5 text-blue-200" /> Assigned Shift: <strong className="text-white">{staff.check_in_time || '09:00'} - {staff.check_out_time || '17:00'}</strong>
               </span>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-            <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-900 px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 font-mono text-xs text-black dark:text-slate-300">
-              <Calendar className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+            <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-3 rounded-xl border border-white/20 font-mono text-xs text-white">
+              <Calendar className="w-4 h-4 text-blue-200" />
               <span>{new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}</span>
             </div>
 
             <Link
               href="/portal/attendance"
-              className="px-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold shadow-md shadow-indigo-600/20 flex items-center justify-center gap-2 transition-all"
+              className="px-4 py-3 bg-white text-blue-700 hover:bg-blue-50 rounded-xl text-xs font-bold shadow-lg shadow-blue-900/30 flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5"
             >
               <UserCheck className="w-4 h-4" /> My Attendance Log
             </Link>

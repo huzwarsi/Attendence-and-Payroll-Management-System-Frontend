@@ -45,8 +45,11 @@ export default function StaffPortalPayrollPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-black dark:text-white tracking-tight flex items-center gap-2">
-            <CircleDollarSign className="w-7 h-7 text-indigo-600 dark:text-indigo-400" /> My Salary Payslips
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-black dark:text-white tracking-tight flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center text-white shadow-lg shadow-blue-600/25">
+              <CircleDollarSign className="w-5 h-5" />
+            </div>
+            My Salary Payslips
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">View net payable salary breakdowns, allowance details, and download PDF payslips.</p>
         </div>
@@ -63,9 +66,9 @@ export default function StaffPortalPayrollPage() {
         ) : (
           payrolls.map((p) => (
             <div key={p.id} className="glass-card glass-card-hover rounded-2xl p-6 space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800/80 pb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200/60 dark:border-slate-800/60 pb-4">
                 <div>
-                  <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Pay Period</span>
+                  <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Pay Period</span>
                   <h3 className="text-lg font-extrabold text-black dark:text-white">
                     Month {p.month} / Year {p.year}
                   </h3>
@@ -73,14 +76,14 @@ export default function StaffPortalPayrollPage() {
 
                 <div className="flex items-center gap-3">
                   <div className="text-right">
-                    <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase block font-semibold">Net Salary</span>
-                    <span className="text-xl font-extrabold text-emerald-600 dark:text-emerald-400 font-mono">
+                    <span className="text-[10px] text-slate-400 uppercase block font-semibold">Net Salary</span>
+                    <span className="text-xl font-black text-emerald-600 dark:text-emerald-400 font-mono">
                       PKR {p.net_salary?.toLocaleString()}
                     </span>
                   </div>
                   <button
                     onClick={() => handleDownloadPDF(p.id)}
-                    className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-semibold shadow-md shadow-indigo-600/20 flex items-center gap-2 transition-all"
+                    className="px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white rounded-xl text-xs font-bold shadow-lg shadow-blue-600/25 flex items-center gap-2 transition-all hover:-translate-y-0.5"
                   >
                     <FileText className="w-4 h-4" /> Download PDF Slips
                   </button>
