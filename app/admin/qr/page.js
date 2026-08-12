@@ -50,6 +50,9 @@ export default function QRStationPage() {
       setQrData(res.data);
     } catch (err) {
       console.error('Fetch today QR error:', err);
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        if (typeof window !== 'undefined') window.location.href = '/login';
+      }
     } finally {
       setLoading(false);
     }
@@ -61,6 +64,10 @@ export default function QRStationPage() {
       const res = await api.post('/qr/generate');
       setQrData(res.data);
     } catch (err) {
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        if (typeof window !== 'undefined') window.location.href = '/login';
+        return;
+      }
       alert(err.response?.data?.error || 'Failed to generate new QR Code.');
     } finally {
       setGenerating(false);
